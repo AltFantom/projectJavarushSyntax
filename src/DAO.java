@@ -80,14 +80,28 @@ public class DAO {
                 ch != 45 && ch != 46 && ch != 58 && ch != 63 && (ch < 1040 || ch > 1103);
     }
     public static int bruteForce(String fileFrom){
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileFrom))){
-            String text;
+        try(FileReader fileReader = new FileReader(fileFrom);
+        BufferedReader bufferedReader = new BufferedReader(fileReader)){
+            StringBuilder text = new StringBuilder("");
+            char symbol;
             for (int key = 1; key < 73; key++) {
+                int keyBegin = key;
+                int anotherKey;
                 bufferedReader.mark(1000);
-                while((text = bufferedReader.readLine()) != null){
-                    if (text.indexOf(". ") > 0){
-                        return key;
+                text.delete(0, text.length());
+                while(bufferedReader.ready()){
+                    anotherKey = keyBegin;
+                    symbol = (char)(bufferedReader.read());
+                    while(anotherKey != 0) {;
+                        do {
+                            symbol += 1;
+                        } while (isCharWhichNeedByCondition(symbol));
+                        anotherKey -= 1;
                     }
+                    text.append(symbol);
+                }
+                if(text.indexOf(". ") > 0 && text.indexOf(", ") > 0){
+                    return key;
                 }
                 bufferedReader.reset();
             }
