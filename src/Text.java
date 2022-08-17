@@ -107,7 +107,11 @@ private int shift;
                     text.append(symbol);
                 }
                 if(text.indexOf(". ") > 0 && text.indexOf(", ") > 0){
-                    return key;
+                    String[] countSpaces = text.toString().split(" ");
+                    int averageWordLength = 9;
+                    if (text.length() / countSpaces.length < averageWordLength){
+                        return key;
+                    }
                 }
                 bufferedReader.reset();
             }
