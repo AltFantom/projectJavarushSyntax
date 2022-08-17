@@ -89,6 +89,7 @@ private int shift;
     public int bruteForce(String fileFrom){
         try(FileReader fileReader = new FileReader(fileFrom);
         BufferedReader bufferedReader = new BufferedReader(fileReader)){
+            String[] countSpaces;
             StringBuilder text = new StringBuilder();
             char symbol;
             for (int key = 1; key < 73; key++) {
@@ -98,7 +99,7 @@ private int shift;
                 while(bufferedReader.ready()){
                     anotherKey = key;
                     symbol = (char)(bufferedReader.read());
-                    while(anotherKey != 0) {;
+                    while(anotherKey != 0) {
                         do {
                             symbol += 1;
                         } while (isCharWhichNeedByCondition(symbol));
@@ -107,7 +108,7 @@ private int shift;
                     text.append(symbol);
                 }
                 if(text.indexOf(". ") > 0 && text.indexOf(", ") > 0){
-                    String[] countSpaces = text.toString().split(" ");
+                    countSpaces = text.toString().split(" ");
                     int averageWordLength = 9;
                     if (text.length() / countSpaces.length < averageWordLength){
                         return key;
