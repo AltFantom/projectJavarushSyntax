@@ -6,8 +6,12 @@ public class Text {
     private String fileTo;
 
     private int shift;
+    public static void main(String[] args) {
+        Text text = new Text();
+        text.toStart();
+    }
 
-    public void workWithConsole() {
+    public void toStart() {
         Scanner sc = new Scanner(System.in);
         int yourChoice = -1;
         while (yourChoice != 0) {
@@ -60,12 +64,12 @@ public class Text {
                     if (shift > 0) {
                         do {
                             symbol += 1;
-                        } while (isCharWhichNeedByCondition(symbol));
+                        } while (checkChar(symbol));
                         shift -= 1;
                     } else {
                         do {
                             symbol -= 1;
-                        } while (isCharWhichNeedByCondition(symbol));
+                        } while (checkChar(symbol));
                         shift += 1;
                     }
                 }
@@ -77,7 +81,7 @@ public class Text {
         }
     }
 
-    private boolean isCharWhichNeedByCondition(char ch) {
+    private boolean checkChar(char ch) {
         return ch != 32 && ch != 33 && ch != 34 && ch != 44 &&
                 ch != 45 && ch != 46 && ch != 58 && ch != 63 && (ch < 1040 || ch > 1103);
     }
@@ -98,7 +102,7 @@ public class Text {
                     while (anotherKey != 0) {
                         do {
                             symbol += 1;
-                        } while (isCharWhichNeedByCondition(symbol));
+                        } while (checkChar(symbol));
                         anotherKey -= 1;
                     }
                     text.append(symbol);
