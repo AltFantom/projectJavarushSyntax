@@ -6,6 +6,7 @@ public class Text {
     private String fileTo;
 
     private int shift;
+
     public static void main(String[] args) {
         Text text = new Text();
         text.toStart();
@@ -89,7 +90,8 @@ public class Text {
     private int bruteForce(String fileFrom) {
         try (FileReader fileReader = new FileReader(fileFrom);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String[] countSpaces;
+            int countSpaces;
+            int averageWordLength;
             StringBuilder text = new StringBuilder();
             char symbol;
             for (int key = 1; key < 73; key++) {
@@ -107,10 +109,10 @@ public class Text {
                     }
                     text.append(symbol);
                 }
-                if (text.indexOf(". ") > 0 && text.indexOf(", ") > 0) {
-                    countSpaces = text.toString().split(" ");
-                    int averageWordLength = 9;
-                    if (text.length() / countSpaces.length < averageWordLength) {
+                if ((text.indexOf(". ") > 0) && (text.indexOf(", ") > 0)) {
+                    countSpaces = toCountSpaces(text.toString());
+                    averageWordLength = 9;
+                    if (text.length() / countSpaces < averageWordLength) {
                         return key;
                     }
                 }
@@ -136,5 +138,17 @@ public class Text {
 
     private void setShift(int shift) {
         this.shift = shift;
+    }
+
+    private int toCountSpaces(String str) {
+        int count = 0;
+        char[] array = str.toCharArray();
+        for (char ch :
+                array) {
+            if (ch == ' ') {
+                count++;
+            }
+        }
+        return count;
     }
 }
