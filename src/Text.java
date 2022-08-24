@@ -16,8 +16,8 @@ public class Text {
         int yourChoice = -1;
         while (yourChoice != 0) {
             System.out.println("""
-                    What do you want to do with file?\s
-                    1. Encrypt/Decode\s
+                    What do you want to do with file?
+                    1. Encrypt/Decode
                     2. Decode with bruteForce
                     3. Exit""");
             try {
